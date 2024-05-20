@@ -1,10 +1,11 @@
 import { Response } from "express";
-import { Document } from "mongoose";
+
+type RespondData = any;
 
 export type Info = {
   res: Response;
   status: number;
   success: boolean;
   message: string;
-  data: Document;
+  data: RespondData;
 };
