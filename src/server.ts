@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import confiq from "./app/confiq";
+import confiq from "./app/config";
 import app from "./app";
 
 async function main() {
