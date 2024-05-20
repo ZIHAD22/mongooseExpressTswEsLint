@@ -6,6 +6,12 @@ const createStudentDB = async (student: Student) => {
   return data;
 };
 
+const getAllStudentDB = async () => {
+  const result = await StudentModal.find();
+  return result;
+};
+
 export const StudentServices = {
   createStudentDB,
+  getAllStudentDB,
 };
