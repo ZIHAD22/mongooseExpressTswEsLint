@@ -1,12 +1,19 @@
 import { Request, Response } from "express";
 import { StudentServices } from "../Student/student.service";
 import { sendResponse } from "../../../util/sendResponse";
-import { Document, HydratedDocument } from "mongoose";
+import { HydratedDocument } from "mongoose";
 import { Student } from "./student.interface";
+import { studentValidationSchema } from "./student.validition";
+import { Document } from "mongoose";
 const createStudent = async (req: Request, res: Response) => {
   try {
     const data = req.body;
-    const result: Document = await StudentServices.createStudentDB(data);
+    console.log(data);
+    const validateData = studentValidationSchema.parse(data);
+
+    const result: Document = await StudentServices.createStudentDB(
+      validateData
+    );
     sendResponse({
       res,
       status: 200,
@@ -16,6 +23,13 @@ const createStudent = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
+    sendResponse({
+      res,
+      status: 500,
+      success: false,
+      message: "something is went wrong",
+      error,
+    });
   }
 };
 
@@ -36,7 +50,4 @@ const getAllStudent = async (req: Request, res: Response) => {
   }
 };
 
-export const StudentControllers = {
-  createStudent,
-  getAllStudent,
-};
+export { createStudent, getAllStudent };

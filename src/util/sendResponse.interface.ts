@@ -1,11 +1,24 @@
 import { Response } from "express";
 
-type RespondData = any;
+type ResponseData = any;
+type ResponseError = any;
 
-export type Info = {
+type infoBase = {
   res: Response;
   status: number;
   success: boolean;
   message: string;
-  data: RespondData;
 };
+
+type infoWithError = infoBase & {
+  error: ResponseError;
+  data?: never; // this ensure "data" is not present when "error" is present
+};
+type infoWithData = infoBase & {
+  data: ResponseData;
+  error?: never; // this ensure "error" is not present when "data" is present
+};
+
+type Info = infoWithData | infoWithError;
+
+export { Info };

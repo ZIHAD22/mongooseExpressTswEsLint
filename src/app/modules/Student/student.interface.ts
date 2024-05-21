@@ -1,21 +1,23 @@
-export type Guardian = {
-  fatherName: string;
-  motherName: string;
-  fatherContactNumber: string;
-  motherContactNumber: string;
+type Guardian = {
+  fatherName?: string;
+  motherName?: string;
+  fatherContactNumber?: string;
+  motherContactNumber?: string;
 };
 
-export type UserName = {
-  fistName: string;
+type UserName = {
+  firstName: string;
   lastName: string;
 };
 
-export type Student = {
+type Student = {
   name: UserName;
   gender: "male" | "female";
-  dateOfBirth: string;
+  dateOfBirth?: string;
   email: string;
-  contactNumber: string;
+  contactNumber?: string;
   guardian: Guardian;
   bloodGroup?: "A+" | "B+" | "O+" | "A-" | "B-" | "O-";
 };
+
+export { Student, UserName, Guardian };

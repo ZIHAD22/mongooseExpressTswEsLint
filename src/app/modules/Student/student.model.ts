@@ -15,7 +15,10 @@ const name = new Schema<UserName>({
 
 const studentSchema = new Schema<Student>({
   name,
-  gender: ["male", "female"],
+  gender: {
+    type: String,
+    enum: ["male", "female"],
+  },
   dateOfBirth: {
     type: String,
   },
@@ -24,7 +27,10 @@ const studentSchema = new Schema<Student>({
     required: true,
   },
   contactNumber: { type: String },
-  bloodGroup: ["A+", "B+", "O+", "A-", "B-", "O-"],
+  bloodGroup: {
+    type: String,
+    enum: ["A+", "B+", "O+", "A-", "B-", "O-"],
+  },
   guardian,
 });
 
